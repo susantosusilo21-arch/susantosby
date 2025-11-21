@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Tugas ASJ - Revisi Final</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 🎨 Variabel CSS untuk kemudahan tema */
+        :root {
+            --bg-color: #f0f4f8; 
+            --primary-color: #3498db; /* Biru Utama */
+            --secondary-color: #2c3e50; /* Teks Hitam */
+            --text-detail: #7f8c8d;
+            --deadline-color: #e74c3c;
+            --shadow-light: #ffffff;
+            --shadow-dark: #c6cace;
+            --card-radius: 15px;
+        }
+
+        /* Reset dan Dasar */
+        * {
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color); 
+            color: var(--secondary-color); 
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(135deg, #1abc9c, var(--primary-color)); 
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            margin: 0 0 5px 0;
+            font-size: 2.5em;
+        }
+
+        /* --- Container Card --- */
+        .task-list-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px; 
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap; 
+        }
+
+        /* --- Card Tugas --- */
+        .task-card {
+            background-color: var(--bg-color); 
+            border-radius: var(--card-radius); 
+            padding: 25px;
+            width: 300px; 
+            /* Neumorphism Shadow */
+            box-shadow: 
+                6px 6px 12px var(--shadow-dark), 
+                -6px -6px 12px var(--shadow-light); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid transparent; /* Penanda Visual */
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 
+                10px 10px 20px var(--shadow-dark), 
+                -10px -10px 20px var(--shadow-light);
+            cursor: default; /* Menghapus cursor pointer dari kartu */
+        }
+
+        /* Warna Penanda Tugas */
+        .task-card.tugas-1 { border-left-color: var(--primary-color); } 
+        .task-card.tugas-2 { border-left-color: #f39c12; } 
+        .task-card.tugas-3 { border-left-color: var(--deadline-color); } 
+
+        /* --- Isi Card --- */
+        .task-header {
+            display: flex;
+            align-items: flex-start; 
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .task-header h2 {
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            line-height: 1.3;
+            flex: 1; 
+        }
+
+        .task-status {
+            font-size: 2em;
+            color: #bdc3c7; 
+            margin-left: 10px; 
+            flex-shrink: 0; /* Mencegah ikon menyusut */
+        }
+        
+        .task-detail p {
+            font-size: 0.9em;
+            color: var(--text-detail);
+            margin: 5px 0;
+        }
+
+        .task-detail .deadline {
+            font-weight: 600; 
+            color: var(--deadline-color); 
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #d0d5db;
+            display: block;
+        }
+
+        /* --- Tautan/Tombol Aksi --- */
+        .task-actions {
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        .task-actions .task-button {
+            background-color: var(--primary-color); 
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px; 
+            font-size: 0.9em;
+            font-weight: 500;
+            text-decoration: none; 
+            display: inline-block; 
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15); 
+        }
+
+        .task-actions .task-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .task-actions .task-button:active {
+            transform: translateY(1px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: #95a5a6;
+            font-size: 0.8em;
+            background-color: #e0e6ec; 
+        }
+
+        /* --- Media Queries (Responsif) --- */
+        @media (max-width: 768px) {
+            .task-list-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .task-card {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Daftar Tugas Administrasi Sistem Jaringan (ASJ)</h1>
+    <p>Organisasi Tugas dalam Desain Card Modern</p>
+</header>
+
+<div class="task-list-container">
+
+    <div class="task-card tugas-1">
+        <div class="task-header">
+            <h2>Tugas 1: Analisis Kebutuhan Hosting</h2>
+            <i class="fas fa-server task-status"></i>
+        </div>
+        <div class="task-detail">
+            <p>Memahami dan menjelaskan perbedaan serta fungsi dari Shared Hosting, Dedicated Hosting, dan VPS.</p>
+            <p class="deadline">Deadline: 19 November 2025</p>
+        </div>
+        <div class="task-actions">
+            <a href="tugas tlj.pdf" class="task-button" target="_blank">Tampilkan Tugas</a>
+        </div>
+    </div>
+
+    <div class="task-card tugas-2">
+        <div class="task-header">
+            <h2>Tugas 2: Implementasi Web Control Panel</h2>
+            <i class="fas fa-cogs task-status"></i>
+        </div>
+        <div class="task-detail">
+            <p>Menginstal dan mengkonfigurasi salah satu Web Control Panel (misalnya Webmin/Virtualmin) pada lingkungan virtual.</p>
+            <p class="deadline">Deadline: 25 November 2025</p>
+        </div>
+        <div class="task-actions">
+            <a href="detail_tugas_2.html" class="task-button" target="_blank">Tampilkan Tugas</a>
+        </div>
+    </div>
+
+    <div class="task-card tugas-3">
+        <div class="task-header">
+            <h2>Tugas 3: Virtualisasi Jaringan (Proxmox)</h2>
+            <i class="fas fa-network-wired task-status"></i>
+        </div>
+        <div class="task-detail">
+            <p>Melakukan instalasi Proxmox VE dan membuat satu VM serta mengkonfigurasi IP Address di dalamnya.</p>
+            <p class="deadline">Deadline: 02 Desember 2025</p>
+        </div>
+        <div class="task-actions">
+            <a href="detail_tugas_3.html" class="task-button" target="_blank">Tampilkan Tugas</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Dibangun untuk Administrasi Sistem Jaringan &copy; 2025</p>
+</footer>
+
+</body>
+</html>
